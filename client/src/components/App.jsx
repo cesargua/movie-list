@@ -6,6 +6,7 @@ import AddMovie from './AddMovie.jsx'
 import _ from 'underscore';
 // import MovieListEntry from './MovieListEntry.jsx'
 //console.log(movies)
+import Parse from  '../parse.js';
 
  
 
@@ -13,9 +14,12 @@ const {useState} = React;
 
 
 const App = ({movies}) => {
-  // movies.map((movie) => {
-  //   movie = _.extend(movie, {watched: false})
-  // });
+  movies.map((movie) => {
+    if(!movie.watched)
+      movie = _.extend(movie, {watched: false});
+    else
+      movie = _.extend(movie, {watched: true});
+  });
   // console.log(parseSend.readAll);
   // var movies;
   //  parseSend.readAll().then((data)=>{
@@ -25,9 +29,9 @@ const App = ({movies}) => {
   //       console.error(err);
   //     });
   //     console.log(movies);
-  movies.map((movie) => {
-      movie = _.extend(movie, {watched: false})
-  });
+  // movies.map((movie) => {
+  //     movie = _.extend(movie, {watched: false})
+  // });
   console.log(movies);
   var [movieList, setMovieList] = useState(movies);
   var [selectedMovie, setSelectedMovie] = useState('');
@@ -56,6 +60,7 @@ const App = ({movies}) => {
       }
     })
     setMovieList(newMovieList);
+    Parse.update({title: newMovieTitle, watched: newMovieWatched});
     //setMovieList(movieList);
   } 
 

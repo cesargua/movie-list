@@ -14,7 +14,13 @@ module.exports = {
         db.query(queryString, (err)=>{
             cb(err);
         })
+    },
+    update: (data,cb) =>{
+        console.log(data)
+        var queryString = `UPDATE movies SET watched=${data.watched} WHERE title='${data.title}'`
+        db.query(queryString, (err)=>{
+            cb(err,data);
+        });
     }
-    //update
 };
 

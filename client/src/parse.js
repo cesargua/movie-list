@@ -61,10 +61,23 @@ var Parse = {
             success: successCB,
             error:errorCB || function(error) {
                 console.error('movies: Failed to fetch movies', error);
-              }
+            }
+        });
+    },
+    update: (movie, successCB, errorCB=null) => {
+        console.log(movie);
+        $.ajax({
+            url: Parse.server+`/${movie.title}`,
+            type: 'PATCH',
+            contentType: 'application/json',
+            data: JSON.stringify(movie),
+            success: successCB,
+            error:errorCB || function(error) {
+                console.error('movies: Failed to update movies', error);
+            }
         });
     }
-    //update
+
 };
 
 export default Parse;
