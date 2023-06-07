@@ -66,7 +66,7 @@ const App = ({movies}) => {
 
   return (
   <div>
-    <h1 id="list"> Movie List</h1>
+    <h1 id="list"> Cow List</h1>
     <div className='AddMovie'>
         <AddMovie setMovieList={setMovieList} movieList={movieList} />
     </div>
